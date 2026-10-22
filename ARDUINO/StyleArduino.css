@@ -1,0 +1,1219 @@
+/* ========================================== */
+/* SECTION INICIAL: Navbar, Hero, Botones     */
+/* ========================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+body {
+    min-width: 320px;
+    overflow-x: hidden;
+    background-color: #0c0d10;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.hero-bg {
+    background:
+        linear-gradient(rgba(10, 12, 16, 0.75), rgba(10, 12, 16, 0.88)),
+        url('imagenes/Arduino1.jpg') center / cover no-repeat;
+}
+
+.hero-panel {
+    display: flex;
+    width: 100%;
+    min-height: clamp(32rem, calc(100svh - 68px), 52rem);
+    align-items: center;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 8vw, 7rem);
+}
+
+.hero-panel__content {
+    width: 100%;
+}
+
+.site-header {
+    min-height: 68px;
+    background: rgba(12, 13, 16, 0.42);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+}
+
+.desktop-nav {
+    display: none;
+    align-items: center;
+    gap: clamp(0.75rem, 1.5vw, 1.5rem);
+}
+
+.mobile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.desktop-nav a,
+.mobile-nav-link {
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.desktop-nav a {
+    white-space: nowrap;
+}
+
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    background: rgba(15, 23, 42, 0.97);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    backdrop-filter: blur(16px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+}
+
+.mobile-menu.hidden-menu {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.5rem);
+    visibility: hidden;
+}
+
+.mobile-menu.visible-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.mobile-nav-link {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 0.75rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+    border-radius: 0.35rem;
+    font-size: 0.95rem;
+}
+
+.mobile-nav-link:last-child {
+    border-bottom: 0;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus-visible {
+    color: #7dd3fc;
+    background: rgba(56, 189, 248, 0.08);
+}
+
+.menu-toggle {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.06);
+    cursor: pointer;
+}
+
+.menu-toggle:hover {
+    border-color: rgba(56, 189, 248, 0.65);
+    background: rgba(56, 189, 248, 0.12);
+}
+
+.menu-toggle-icon,
+.menu-toggle-icon::before,
+.menu-toggle-icon::after {
+    width: 21px;
+    height: 2px;
+    display: block;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.menu-toggle-icon {
+    position: relative;
+}
+
+.menu-toggle-icon::before,
+.menu-toggle-icon::after {
+    position: absolute;
+    left: 0;
+    content: '';
+}
+
+.menu-toggle-icon::before {
+    transform: translateY(-7px);
+}
+
+.menu-toggle-icon::after {
+    transform: translateY(7px);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-icon {
+    background: transparent;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-icon::before {
+    transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle-icon::after {
+    transform: rotate(-45deg);
+}
+
+.menu-toggle:focus-visible,
+.desktop-nav a:focus-visible,
+.btn-outline:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 4px;
+}
+
+.script-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    letter-spacing: 2px;
+}
+
+.btn-outline {
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    border-color: #38bdf8;
+    background-color: rgba(56, 189, 248, 0.15);
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+    transform: translateY(-2px);
+}
+
+.fade-in {
+    animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 380px) {
+    .script-text {
+        letter-spacing: 0.5px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .desktop-nav {
+        display: flex;
+    }
+    .mobile-actions,
+    .mobile-menu {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===== ESTILOS PARA LA SECCIÓN GSAP SPLITTEXT ===== */
+
+/* ===== NUEVA SECCIÓN ARDUINO: paleta #0c0d10, cian #38bdf8, texto #e5e7eb ===== */
+.arduino-section {
+    --arduino-cyan: #38bdf8;
+    --arduino-text: #e5e7eb;
+    --arduino-muted: #aab7c5;
+    --arduino-glass: rgba(255, 255, 255, 0.06);
+    --arduino-border: rgba(148, 163, 184, 0.2);
+    width: min(100%, 1200px);
+    margin-inline: auto;
+    padding: clamp(3rem, 8vw, 7rem) clamp(0.25rem, 3vw, 1rem);
+    color: var(--arduino-text);
+    font-family: 'Montserrat', sans-serif;
+    scroll-margin-top: 1rem;
+}
+
+.arduino-section *,
+.arduino-section *::before,
+.arduino-section *::after {
+    box-sizing: border-box;
+}
+
+.arduino-section__heading {
+    max-width: 720px;
+    margin-bottom: 2rem;
+}
+
+.arduino-section__heading h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2rem, 6vw, 3.6rem);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+
+.arduino-eyebrow {
+    margin: 0 0 0.75rem;
+    color: var(--arduino-cyan);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.arduino-definition {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: clamp(1.5rem, 5vw, 4rem);
+    scroll-margin-top: 1.5rem;
+}
+
+.arduino-definition__copy {
+    min-width: 0;
+    max-width: 540px;
+    color: var(--arduino-muted);
+    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+    line-height: 1.8;
+}
+
+.arduino-definition__copy p {
+    margin: 0 0 1rem;
+}
+
+.arduino-definition__copy .arduino-definition__lead {
+    color: #fff;
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.arduino-board-card {
+    min-width: 0;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 1px solid var(--arduino-border);
+    border-radius: 1.25rem;
+    background: linear-gradient(145deg, rgba(15, 34, 46, 0.88), rgba(12, 13, 16, 0.94));
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease;
+}
+
+.arduino-board-card__topline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    color: var(--arduino-muted);
+    font-size: 0.78rem;
+}
+
+.arduino-board-card__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.arduino-board-card__status span {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--arduino-cyan);
+    box-shadow: 0 0 12px var(--arduino-cyan);
+}
+
+.arduino-board-art {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 800 / 490;
+}
+
+.arduino-board-art__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.arduino-hotspot {
+    position: absolute;
+    top: var(--hotspot-y);
+    left: var(--hotspot-x);
+    display: grid;
+    width: clamp(2rem, 7vw, 2.6rem);
+    aspect-ratio: 1;
+    place-items: center;
+    padding: 0;
+    transform: translate(-50%, -50%);
+    border: 2px solid #e0f2fe;
+    border-radius: 50%;
+    background: var(--arduino-cyan);
+    box-shadow: 0 0 0 6px rgba(56, 189, 248, 0.2);
+    color: #08202b;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 800;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.arduino-hotspot:hover,
+.arduino-hotspot:focus-visible,
+.arduino-hotspot[aria-pressed="true"] {
+    z-index: 1;
+    transform: translate(-50%, -50%) scale(1.12);
+    box-shadow: 0 0 0 9px rgba(56, 189, 248, 0.28);
+}
+
+.arduino-hotspot:focus-visible,
+.arduino-carousel-button:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 4px;
+}
+
+.arduino-board-info {
+    min-height: 5.75rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 0.85rem;
+    background: rgba(56, 189, 248, 0.06);
+}
+
+.arduino-board-info h3 {
+    margin: 0 0 0.35rem;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.arduino-board-info p {
+    margin: 0;
+    color: var(--arduino-muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.arduino-essentials,
+.arduino-build {
+    margin-top: clamp(4rem, 9vw, 7rem);
+}
+
+.arduino-section__heading--compact {
+    margin-bottom: 1.5rem;
+}
+
+.arduino-section__heading--compact h2 {
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+}
+
+.arduino-swiper {
+    width: 100%;
+    overflow: hidden;
+    padding: 0.25rem 0.1rem 1rem;
+}
+
+.arduino-swiper .swiper-slide {
+    display: flex;
+    height: auto;
+    min-width: 0;
+}
+
+.arduino-essential-card {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    min-height: 210px;
+    flex-direction: column;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    border: 1px solid var(--arduino-border);
+    border-radius: 1rem;
+    background: var(--arduino-glass);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.arduino-essential-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.55);
+    background: rgba(56, 189, 248, 0.08);
+}
+
+.arduino-essential-card__number {
+    margin-bottom: 1.5rem;
+    color: var(--arduino-cyan);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.arduino-essential-card h3 {
+    margin: 0 0 0.6rem;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.arduino-essential-card p {
+    margin: 0;
+    color: var(--arduino-muted);
+    font-size: 0.9rem;
+    line-height: 1.65;
+}
+
+.arduino-carousel-controls {
+    display: flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.arduino-carousel-button {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border: 1px solid var(--arduino-border);
+    border-radius: 50%;
+    background: var(--arduino-glass);
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.arduino-carousel-button:hover {
+    border-color: var(--arduino-cyan);
+    background: rgba(56, 189, 248, 0.12);
+}
+
+.arduino-carousel-button.swiper-button-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.arduino-swiper-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+.arduino-swiper-pagination .swiper-pagination-bullet {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin: 0 !important;
+    background: #94a3b8;
+    opacity: 0.6;
+}
+
+.arduino-swiper-pagination .swiper-pagination-bullet-active {
+    width: 1.25rem;
+    border-radius: 1rem;
+    background: var(--arduino-cyan);
+    opacity: 1;
+}
+
+.arduino-build__intro {
+    margin: 0.8rem 0 0;
+    color: var(--arduino-muted);
+    line-height: 1.7;
+}
+
+.arduino-build__steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.arduino-step {
+    min-width: 0;
+    padding: 1.25rem;
+    border-left: 2px solid var(--arduino-cyan);
+    border-radius: 0 0.8rem 0.8rem 0;
+    background: linear-gradient(90deg, rgba(56, 189, 248, 0.08), transparent);
+}
+
+.arduino-step > span {
+    color: var(--arduino-cyan);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.arduino-step h3 {
+    margin: 0.75rem 0 0.4rem;
+    color: #fff;
+}
+
+.arduino-step p {
+    margin: 0;
+    color: var(--arduino-muted);
+    font-size: 0.9rem;
+    line-height: 1.65;
+}
+
+@media (max-width: 760px) {
+    .arduino-definition,
+    .arduino-build__steps {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .arduino-board-card {
+        width: 100%;
+        margin-inline: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .arduino-section *,
+    .arduino-section *::before,
+    .arduino-section *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Fondo diferenciado de Materiales: gris azulado oscuro #11131a */
+.materials-section {
+    width: 100%;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(56, 189, 248, 0.07), transparent 58%),
+        #11131a; /* Fondo base: #11131a */
+    color: #e5e7eb;
+    scroll-margin-top: 1rem;
+}
+
+.materials-shell {
+    width: min(100%, 1200px);
+    margin-inline: auto;
+}
+
+.materials-heading {
+    max-width: 720px;
+    margin-bottom: 2rem;
+}
+
+.materials-eyebrow {
+    margin: 0 0 0.75rem;
+    color: #38bdf8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.materials-heading h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2rem, 6vw, 3.6rem);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+
+.materials-heading > p:last-child {
+    margin: 0.8rem 0 0;
+    color: #aab7c5;
+    line-height: 1.7;
+}
+
+.materials-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.25rem;
+}
+
+.materials-card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.045);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.materials-card:hover,
+.materials-card:focus-within {
+    transform: translateY(-4px);
+    border-color: rgba(56, 189, 248, 0.7);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.25), 0 0 20px rgba(56, 189, 248, 0.1);
+}
+
+.materials-card__media {
+    height: 180px;
+    margin: 0;
+    overflow: hidden;
+    background: #171b24; /* Fondo de imagen/ilustración: #171b24 */
+}
+
+/* Estilos para la imagen de la tarjeta de materiales */
+.materials-card__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.materials-card:hover .materials-card__image {
+    transform: scale(1.05);
+}
+
+.materials-card__body {
+    padding: 1.25rem;
+}
+
+.materials-card__body h3 {
+    margin: 0 0 0.55rem;
+    color: #fff;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.materials-card__body p {
+    margin: 0;
+    color: #aab7c5;
+    font-size: 0.9rem;
+    line-height: 1.65;
+}
+
+.materials-art__bg { fill: #171b24; }
+.materials-art__wire,
+.materials-art__trace { fill: none; stroke: #38bdf8; stroke-width: 5; stroke-linecap: round; }
+.materials-art__wire--red { stroke: #fb7185; }
+.materials-art__wire--orange { stroke: #fbbf24; }
+.materials-art__servo { fill: #25677b; stroke: #7dd3fc; stroke-width: 3; }
+.materials-art__servo-dark { fill: #123746; }
+.materials-art__metal { fill: #cbd5e1; }
+.materials-art__horn { fill: none; stroke: #e2e8f0; stroke-width: 8; stroke-linecap: round; }
+.materials-art__sensor { fill: #14532d; stroke: #86efac; stroke-width: 3; }
+.materials-art__sensor-line { fill: none; stroke: #bbf7d0; stroke-width: 3; stroke-linecap: round; }
+.materials-art__resistor { fill: none; stroke: #d6b889; stroke-width: 17; stroke-linecap: round; stroke-linejoin: round; }
+.materials-art__resistor-band { fill: none; stroke: #92400e; stroke-width: 4; }
+.materials-art__label { fill: #e5e7eb; font: 700 16px Montserrat, sans-serif; }
+.materials-art__board { fill: #087c83; stroke: #7ce7df; stroke-width: 3; }
+.materials-art__usb { fill: #cbd5e1; stroke: #f8fafc; stroke-width: 3; }
+.materials-art__chip { fill: #10252c; stroke: #77e2d4; stroke-width: 3; }
+.materials-art__chip-pin { fill: #183c46; }
+.materials-art__pin { fill: none; stroke: #d2c08b; stroke-width: 4; stroke-linecap: round; }
+.materials-art__led { fill: #38bdf8; }
+.materials-art__breadboard { fill: #e2e8f0; stroke: #94a3b8; stroke-width: 3; }
+.materials-art__groove { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 3 4; }
+.materials-art__holes { fill: #334155; }
+.materials-art__jumper { fill: none; stroke-width: 7; stroke-linecap: round; }
+.materials-art__jumper--blue { stroke: #38bdf8; }
+.materials-art__jumper--red { stroke: #fb7185; }
+.materials-art__jumper--yellow { stroke: #fbbf24; }
+.materials-art__plug { fill: #cbd5e1; stroke: #64748b; stroke-width: 2; }
+
+@media (min-width: 600px) {
+    .materials-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .materials-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1280px) {
+    .materials-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .materials-card,
+    .materials-card__art {
+        transition-duration: 0.01ms !important;
+    }
+
+    .materials-card:hover,
+    .materials-card:focus-within {
+        transform: none;
+    }
+}
+
+/* Colores de la guía: fondo #0f1115, cian #38bdf8, texto #e5e7eb, secundario #aab7c5, borde #94a3b8 y blanco #fff. */
+.arduino-construction {
+    --construction-background: #0f1115;
+    --construction-cyan: #38bdf8;
+    --construction-text: #e5e7eb;
+    --construction-muted: #aab7c5;
+    --construction-border: rgba(148, 163, 184, 0.22);
+    width: 100%;
+    margin: clamp(2rem, 5vw, 3.5rem) 0;
+    padding: clamp(1.25rem, 4vw, 3rem);
+    overflow: hidden;
+    border: 1px solid var(--construction-border);
+    border-radius: 1.25rem;
+    background:
+        radial-gradient(ellipse at 18% 0%, rgba(56, 189, 248, 0.1), transparent 48%),
+        var(--construction-background);
+    color: var(--construction-text);
+    box-sizing: border-box;
+}
+
+.arduino-construction__heading {
+    max-width: 48rem;
+    margin: 0 auto clamp(1.75rem, 4vw, 2.5rem);
+    text-align: center;
+}
+
+.arduino-construction__eyebrow {
+    margin: 0 0 0.65rem;
+    color: var(--construction-cyan);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.arduino-construction__heading h3 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.75rem, 4.5vw, 2.8rem);
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+    text-shadow: 0 0 22px rgba(56, 189, 248, 0.28);
+}
+
+.arduino-construction__heading > p:last-child {
+    margin: 0.85rem 0 0;
+    color: var(--construction-muted);
+    line-height: 1.7;
+}
+
+.arduino-construction__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: stretch;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.arduino-construction__list {
+    display: grid;
+    align-content: center;
+    gap: 0.75rem;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.arduino-construction__list li {
+    position: relative;
+    min-width: 0;
+}
+
+.arduino-construction__list li:not(:last-child)::after {
+    position: absolute;
+    bottom: -0.75rem;
+    left: 2.4rem;
+    width: 2px;
+    height: 0.75rem;
+    background: rgba(56, 189, 248, 0.42);
+    content: "";
+}
+
+.arduino-construction__step {
+    display: grid;
+    width: 100%;
+    min-width: 0;
+    min-height: 5.25rem;
+    grid-template-columns: 3rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--construction-border);
+    border-radius: 0.9rem;
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--construction-text);
+    cursor: pointer;
+    text-align: left;
+    opacity: 0.66;
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.arduino-construction__step:hover {
+    border-color: rgba(56, 189, 248, 0.65);
+    opacity: 1;
+}
+
+.arduino-construction__step:focus-visible {
+    outline: 3px solid var(--construction-cyan);
+    outline-offset: 3px;
+    opacity: 1;
+}
+
+.arduino-construction__step[aria-pressed="true"] {
+    border-color: var(--construction-cyan);
+    background: rgba(56, 189, 248, 0.1);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.16);
+    opacity: 1;
+}
+
+.arduino-construction__step-icon {
+    display: grid;
+    width: 2.8rem;
+    height: 2.8rem;
+    place-items: center;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 0.75rem;
+    background: rgba(56, 189, 248, 0.08);
+    color: var(--construction-cyan);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.arduino-construction__step:hover .arduino-construction__step-icon,
+.arduino-construction__step:focus-visible .arduino-construction__step-icon {
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.28);
+    transform: scale(1.06);
+}
+
+.arduino-construction__step-icon svg {
+    width: 1.55rem;
+    height: 1.55rem;
+}
+
+.arduino-construction__step-copy {
+    display: grid;
+    min-width: 0;
+    gap: 0.15rem;
+}
+
+.arduino-construction__step-number {
+    color: var(--construction-muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.arduino-construction__step-name {
+    font-size: 1rem;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.arduino-construction__step-arrow {
+    color: var(--construction-cyan);
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.arduino-construction__detail {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid var(--construction-border);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.045);
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.arduino-construction__detail.is-updating {
+    opacity: 0;
+    transform: translateY(0.6rem);
+}
+
+.arduino-construction__detail-icon {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: 1rem;
+    place-items: center;
+    border-radius: 0.8rem;
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--construction-cyan);
+    font-size: 1.5rem;
+}
+
+.arduino-construction__detail-kicker {
+    margin: 0 0 0.45rem;
+    color: var(--construction-cyan);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.arduino-construction__detail h4 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.arduino-construction__detail-description {
+    margin: 0.75rem 0 0;
+    color: var(--construction-muted);
+    line-height: 1.7;
+}
+
+.arduino-construction__example {
+    width: 100%;
+    margin: 1.25rem 0 0;
+    padding: 0.9rem 1rem;
+    border-left: 2px solid var(--construction-cyan);
+    border-radius: 0 0.6rem 0.6rem 0;
+    background: rgba(56, 189, 248, 0.07);
+    color: var(--construction-text);
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.arduino-construction__example strong {
+    color: var(--construction-cyan);
+}
+
+.arduino-construction__progress {
+    width: 100%;
+    margin-top: auto;
+    padding-top: 1.5rem;
+}
+
+.arduino-construction__progress-labels {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.4rem 1rem;
+    margin-bottom: 0.55rem;
+    color: var(--construction-muted);
+    font-size: 0.78rem;
+}
+
+.arduino-construction__progress-track {
+    height: 0.45rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.2);
+}
+
+.arduino-construction__progress-track span {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--construction-cyan);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.48);
+    transition: width 300ms ease;
+}
+
+@media (max-width: 760px) {
+    .arduino-construction__layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .arduino-construction__detail {
+        min-height: 18rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .arduino-construction *,
+    .arduino-construction *::before,
+    .arduino-construction *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Colores del FAQ: fondo #0a0c10, tarjeta #11151c, cian #38bdf8 y texto #e5e7eb. */
+.arduino-faq {
+    --faq-background: #0a0c10;
+    --faq-card: #11151c;
+    --faq-cyan: #38bdf8;
+    --faq-text: #e5e7eb;
+    --faq-muted: #aab7c5;
+    --faq-border: rgba(148, 163, 184, 0.2);
+    width: 100%;
+    padding: clamp(3.5rem, 8vw, 6rem) clamp(1rem, 4vw, 2rem);
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(56, 189, 248, 0.07), transparent 58%),
+        var(--faq-background);
+    color: var(--faq-text);
+    box-sizing: border-box;
+    scroll-margin-top: 1rem;
+}
+
+.arduino-faq__container {
+    width: min(100%, 52rem);
+    margin-inline: auto;
+}
+
+.arduino-faq__heading {
+    margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+    text-align: center;
+}
+
+.arduino-faq__eyebrow {
+    margin: 0 0 0.7rem;
+    color: var(--faq-cyan);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.arduino-faq__heading h2 {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+    text-shadow: 0 0 22px rgba(56, 189, 248, 0.25);
+}
+
+.arduino-faq__heading > p:last-child {
+    margin: 0.8rem 0 0;
+    color: var(--faq-muted);
+    line-height: 1.7;
+}
+
+.arduino-faq__list {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.arduino-faq__item {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--faq-border);
+    border-radius: 0.9rem;
+    background: rgba(255, 255, 255, 0.045);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.arduino-faq__item.is-open {
+    border-color: var(--faq-cyan);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.12);
+}
+
+.arduino-faq__item h3 {
+    margin: 0;
+}
+
+.arduino-faq__question {
+    display: flex;
+    width: 100%;
+    min-height: 4.5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem clamp(1rem, 4vw, 1.5rem);
+    border: 0;
+    background: transparent;
+    color: var(--faq-text);
+    cursor: pointer;
+    font: inherit;
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+    font-weight: 600;
+    line-height: 1.5;
+    text-align: left;
+    transition: color 0.2s ease;
+}
+
+.arduino-faq__question:hover,
+.arduino-faq__question:focus-visible,
+.arduino-faq__item.is-open .arduino-faq__question {
+    color: var(--faq-cyan);
+}
+
+.arduino-faq__question:focus-visible {
+    outline: 2px solid var(--faq-cyan);
+    outline-offset: -4px;
+    border-radius: 0.75rem;
+}
+
+.arduino-faq__question > span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.arduino-faq__icon {
+    flex: 0 0 auto;
+    width: 1.1rem;
+    height: 1.1rem;
+    color: var(--faq-cyan);
+    transition: transform 0.3s ease;
+}
+
+.arduino-faq__item.is-open .arduino-faq__icon {
+    transform: rotate(180deg);
+}
+
+.arduino-faq__answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    background: rgba(0, 0, 0, 0.2);
+    transition: grid-template-rows 0.3s ease;
+}
+
+.arduino-faq__item.is-open .arduino-faq__answer {
+    grid-template-rows: 1fr;
+}
+
+.arduino-faq__answer-inner {
+    min-height: 0;
+    overflow: hidden;
+    padding: 0 clamp(1rem, 4vw, 1.5rem);
+    color: var(--faq-muted);
+    line-height: 1.75;
+    transition: padding 0.3s ease;
+}
+
+.arduino-faq__item.is-open .arduino-faq__answer-inner {
+    padding-block: 0.9rem 1.25rem;
+}
+
+.arduino-faq__answer-inner p {
+    margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .arduino-faq *,
+    .arduino-faq *::before,
+    .arduino-faq *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
